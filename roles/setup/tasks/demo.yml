@@ -1,0 +1,17 @@
+---
+- name: activate unmaintained
+  shell:
+    cmd: "ucr set repository/online/unmaintained=yes"
+  tags: demo-env
+
+- name: install univention-demo-configuration
+  apt:
+    name: univention-demo-configuration
+    state: present
+    update_cache: yes
+  tags: demo-env
+
+- name: deactivate unmaintained
+  shell:
+    cmd: "ucr set repository/online/unmaintained=false"
+  tags: demo-env

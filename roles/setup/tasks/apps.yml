@@ -1,0 +1,28 @@
+---
+- name: generate admin password file
+  template:
+    src: "templates/temppasswd.j2"
+    dest: "/tmp/univention"
+  tags: apps
+
+- name: update univention apps
+  shell:
+    cmd: "/usr/bin/univention-app update"
+  tags: apps
+
+- name: install apps from appstore
+  shell:
+    cmd: "/usr/bin/univention-app install {{ item }} --username Administrator --noninteractive --pwdfile /tmp/univention"
+  loop:
+    - admindiary-backend
+    - admindiary-frontend
+    - prometheus
+    - prometheus-node-exporter
+    - admin-dashboard
+    - cups
+    - dhcp-server
+    - self-service-backend
+    - self-service
+    - pkgdb
+    - letsencrypt
+  tags: apps

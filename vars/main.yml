@@ -1,0 +1,8 @@
+---
+hostname: 'vm'
+domainname: 'demo.univention.de'
+basedn: 'dc=demo,dc=univention,dc=de'
+rootpassword: 'univention'
+#ou: 'schule'
+#nameschuladmin: 'schuladmin'
+
